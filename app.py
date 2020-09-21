@@ -19,32 +19,40 @@ if uploaded_img is not None:
     img = Image.open(uploaded_img)
     img_arr = np.asarray(img)
 
-show_raw_img = st.checkbox("Show Original Image")
+    show_raw_img = st.checkbox("Show Original Image")
 
-if show_raw_img:
-    plt.imshow(img_arr)
-    st.pyplot()
+    if show_raw_img:
+        plt.imshow(img_arr)
+        st.pyplot()
 
-rgb_or_gray = st.sidebar.selectbox("Deal with RGB or Grayscale Images?", ['RGB', 'GrayScale'])
+    rgb_or_gray = st.sidebar.selectbox("Deal with RGB or Grayscale Images?", ['RGB', 'GrayScale'])
 
-if rgb_or_gray == 'RGB':
-    st.subheader("Working on RGB Image")
+    if rgb_or_gray == 'RGB':
+        st.subheader("Working on RGB Image")
 
-    if len(img_arr.shape) == 2:
-        img_arr = gray2rgb(img_arr)
+        if len(img_arr.shape) == 2:
+            img_arr = gray2rgb(img_arr)
 
-    int_hist = st.checkbox("Intensity Histogram!")
-    if int_hist:
-        plt.hist(img_arr[:, :, 0].ravel(), bins=256, alpha=0.5, color='red', label='Red')
-        plt.hist(img_arr[:, :, 1].ravel(), bins=256, alpha=0.5, color='green', label='Green')
-        plt.hist(img_arr[:, :, 2].ravel(), bins=256, alpha=0.5, color='blue', label='Blue')
-        plt.legend()
-    # plt.imshow(img_arr)
-    st.pyplot()
-elif rgb_or_gray == "GrayScale":
-    st.subheader("Working on GrayScale Image")
+        int_hist = st.checkbox("Intensity Histogram!")
+        if int_hist:
+            plt.hist(img_arr[:, :, 0].ravel(), bins=256, alpha=0.5, color='red', label='Red')
+            plt.hist(img_arr[:, :, 1].ravel(), bins=256, alpha=0.5, color='green', label='Green')
+            plt.hist(img_arr[:, :, 2].ravel(), bins=256, alpha=0.5, color='blue', label='Blue')
+            plt.legend()
+            st.pyplot()
 
-    if len(img_arr.shape) == 3:
-        img_arr = rgb2gray(img_arr)
-    plt.imshow(img_arr)
-    st.pyplot()
+        rgb_channel = st.checkbox("Images in different channels")
+        if rgb_channel:
+            _, ax = plt.subplots(nrows=1, ncols=3)
+
+            ax[0].imshow(img_arr[:, :, 0])
+            ax[1].imshow(img_arr[:, :, 1])
+            ax[2].imshow(img_arr[:, :, 2])
+            st.pyplot()
+    elif rgb_or_gray == "GrayScale":
+        st.subheader("Working on GrayScale Image")
+
+        if len(img_arr.shape) == 3:
+            img_arr = rgb2gray(img_arr)
+        plt.imshow(img_arr, cmap='gray')
+        st.pyplot()
