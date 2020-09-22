@@ -1,4 +1,4 @@
-# Image Preocessing
+# Image Processing
 
 I have made an app in streamlit which can be used to process a given image.
 
