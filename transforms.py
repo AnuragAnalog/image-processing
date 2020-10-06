@@ -32,6 +32,14 @@ def log_transform(image, c=1):
 
     return new_image
 
+def inverse_log(image, c=1):
+    image = preprocess(image)
+
+    new_image = c * np.exp(image)
+    new_image = linear_transform(new_image)
+
+    return new_image
+
 def identity(image):
     image = preprocess(image)
 

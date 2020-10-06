@@ -2,12 +2,16 @@
 
 I have made an app in streamlit which can be used to process a given image.
 
-The transform file contains some of the *Point processing techniques* which can be applied to the images.
+The transform file contains some of the **Point processing techniques** which can be applied to the images.
 
 * Identity
 * Negative
 * Log Transform
 * Power Transform
+
+The utils file contains some of the **Image processing operations**
+
+* Convolve
 
 ## Extend the work
 
