@@ -22,7 +22,7 @@ def show_image(image, cmap='gray'):
     return
 
 # Setting page config's
-st.beta_set_page_config(page_title="Image Processing")
+st.set_page_config(page_title="Image Processing")
 
 # Suppressing streamlit warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
